@@ -4,6 +4,7 @@ import Wrapper from './Wrapper';
 import Counter from './Counter';
 import InputSample from './InputSample';
 import MultiInputSample from './MultiInputSample';
+import UserList from './UserList';
 import './App.css';
 
 function App1() {
@@ -54,9 +55,15 @@ function App3(){
   );
 }
 
-function App(){
+function App4(){
   return (
     <MultiInputSample/>
+  );
+}
+
+function App(){
+  return (
+    <UserList/>
   );
 }
 

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useRef} from 'react';
 
 function MultiInputSample(){
     /* 
@@ -6,12 +6,14 @@ function MultiInputSample(){
         input에 name을 설정하고 이벤트가 발생했을 때 이 값을 참조하는 것
         useState에서는 문자열이 아니라 객체 형태의 상태를 관리해야함!!!
     */
+    //inputs 는 name과 nickname 값을 가진 객체 형태
+    //setInputs 는 객체를 매개변수로 받는 메서드 형태?
     const [inputs, setInputs] = useState({
         name : '',
         nickname : ''
     });
-    //inputs 는 name과 nickname 값을 가진 객체 형태
-    //setInputs 는 객체를 매개변수로 받는 메서드 형태?
+
+    const nameInput = useRef(); //Ref객체 생성, 필요한 요소에 ref={nameInput}과 같이 설정
     
     const {name, nickname} = inputs; //return 문에 들어가는 {name}, {nickname} 기본값
 
@@ -36,12 +38,16 @@ function MultiInputSample(){
         setInputs({
             name: '',
             nickname: ''
-        })
+        });
+
+        //ref객체의 .current는 현재 ref로 설정된 요소의 DOM을 가르킴
+        //document.getElementsByNames('name').focus();
+        nameInput.current.focus();
     }
 
     return (
         <div>
-            <input name='name' placeholder='이름' onChange={onChange} value={name}/>
+            <input name='name' placeholder='이름' onChange={onChange} value={name} ref={nameInput}/>
             <input name='nickname' placeholder='닉네임' onChange={onChange} value={nickname}/>
             <button onClick={onReset}>초기화</button>
             <div>
